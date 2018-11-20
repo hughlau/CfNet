@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CfNet.Core.Domain;
+using CfNet.Service.SysMenuService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +17,8 @@ namespace CfNet.Admin.Controllers
 
         public ActionResult About()
         {
+            SysMenuService service = new SysMenuService();
+            SysMenu menu= service.GetModel(1);
             ViewBag.Message = "Your application description page.";
 
             return View();
