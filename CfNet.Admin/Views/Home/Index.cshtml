@@ -1,341 +1,121 @@
-﻿
-<div>
-    <el-row :gutter="20">
-        <el-col :span="8">
-            <el-card shadow="hover" class="mgb20" style="height:252px;">
-                <div class="user-info">
-                    <img src="static/img/img.jpg" class="user-avator" alt="">
-                    <div class="user-info-cont">
-                        <div class="user-info-name">{{name}}</div>
-                        <div>{{role}}</div>
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv=Content-Type content='text/html; charset=utf-8'>
+
+    <title>委员综合服务平台</title>
+    <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/skins/_all-skins.css">
+</head>
+<body class="hold-transition skin-blue sidebar-mini" style="overflow:hidden;">
+    <div id="ajax-loader" style="cursor: progress; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: #fff; z-index: 10000; overflow: hidden;">
+        <img src="img/ajax-loader.gif" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;" />
+    </div>
+    <div class="wrapper">
+        <!--头部信息-->
+        <header class="main-header">
+            <a target="_blank" class="logo">
+                <span class="logo-mini">服务平台</span>
+                <span class="logo-lg"><img src="img/top_logo.png" style="margin-bottom: 5px" /> </span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <a class="sidebar-toggle">
+                    <span class="sr-only">切换</span>
+                </a><span class="index_top"><strong>xxxxx综合服务平台</strong></span>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o "></i>
+                                <span class="label label-success">4</span>
+                            </a>
+                        </li>
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning">10</span>
+                            </a>
+                        </li>
+                        <li class="dropdown tasks-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-flag-o"></i>
+                                <span class="label label-danger">9</span>
+                            </a>
+                        </li>
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <span class="hidden-xs">administrator</span>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a class="menuItem" data-id="userInfo" href="#"><i class="fa fa-user"></i>个人信息</a></li>
+                                <li><a href="javascript:void();"><i class="fa fa-trash-o"></i>清空缓存</a></li>
+                                <li><a href="javascript:void();"><i class="fa fa-paint-brush"></i>皮肤设置</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!--左边导航-->
+        <div class="main-sidebar">
+            <div class="sidebar">
+
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <a class="btn btn-flat"><i class="fa fa-search"></i></a>
+                        </span>
                     </div>
+                </form>
+                <ul class="sidebar-menu" id="sidebar-menu">
+                    <!--<li class="header">导航菜单</li>-->
+                </ul>
+            </div>
+        </div>
+        <!--中间内容-->
+        <div id="content-wrapper" class="content-wrapper">
+            <div class="content-tabs">
+                <button class="roll-nav roll-left tabLeft">
+                    <i class="fa fa-backward"></i>
+                </button>
+                <nav class="page-tabs menuTabs">
+                    <div class="page-tabs-content" style="margin-left: 0px;">
+                        <a href="javascript:;" class="menuTab active" data-id="book01.html">提案提交</a>
+
+
+                    </div>
+                </nav>
+                <button class="roll-nav roll-right tabRight">
+                    <i class="fa fa-forward" style="margin-left: 3px;"></i>
+                </button>
+                <div class="btn-group roll-nav roll-right">
+                    <button class="dropdown tabClose" data-toggle="dropdown">
+                        页签操作<i class="fa fa-caret-down" style="padding-left: 3px;"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a class="tabReload" href="javascript:void();">刷新当前</a></li>
+                        <li><a class="tabCloseCurrent" href="javascript:void();">关闭当前</a></li>
+                        <li><a class="tabCloseAll" href="javascript:void();">全部关闭</a></li>
+                        <li><a class="tabCloseOther" href="javascript:void();">除此之外全部关闭</a></li>
+                    </ul>
                 </div>
-                <div class="user-info-list">上次登录时间：<span>2018-01-01</span></div>
-                <div class="user-info-list">上次登录地点：<span>东莞</span></div>
-            </el-card>
-            <el-card shadow="hover" style="height:252px;">
-                <div slot="header" class="clearfix">
-                    <span>语言详情</span>
+                <button class="roll-nav roll-right fullscreen"><i class="fa fa-arrows-alt"></i></button>
+            </div>
+            <div class="content-iframe" style="overflow: hidden;">
+                <div class="mainContent" id="content-main" style="margin: 10px; margin-bottom: 0px; padding: 0;">
+                    <iframe class="LRADMS_iframe" width="100%" height="100%" src="book01.html" frameborder="0" data-id="book01.html"></iframe>
                 </div>
-                Vue
-                <el-progress :percentage="71.3" color="#42b983"></el-progress>
-                JavaScript
-                <el-progress :percentage="24.1" color="#f1e05a"></el-progress>
-                CSS
-                <el-progress :percentage="3.7"></el-progress>
-                HTML
-                <el-progress :percentage="0.9" color="#f56c6c"></el-progress>
-            </el-card>
-        </el-col>
-        <el-col :span="16">
-            <el-row :gutter="20" class="mgb20">
-                <el-col :span="8">
-                    <el-card shadow="hover" :body-style="{padding: '0px'}">
-                        <div class="grid-content grid-con-1">
-                            <i class="el-icon-lx-people grid-con-icon"></i>
-                            <div class="grid-cont-right">
-                                <div class="grid-num">1234</div>
-                                <div>用户访问量</div>
-                            </div>
-                        </div>
-                    </el-card>
-                </el-col>
-                <el-col :span="8">
-                    <el-card shadow="hover" :body-style="{padding: '0px'}">
-                        <div class="grid-content grid-con-2">
-                            <i class="el-icon-lx-notice grid-con-icon"></i>
-                            <div class="grid-cont-right">
-                                <div class="grid-num">321</div>
-                                <div>系统消息</div>
-                            </div>
-                        </div>
-                    </el-card>
-                </el-col>
-                <el-col :span="8">
-                    <el-card shadow="hover" :body-style="{padding: '0px'}">
-                        <div class="grid-content grid-con-3">
-                            <i class="el-icon-lx-goods grid-con-icon"></i>
-                            <div class="grid-cont-right">
-                                <div class="grid-num">5000</div>
-                                <div>数量</div>
-                            </div>
-                        </div>
-                    </el-card>
-                </el-col>
-            </el-row>
-            <el-card shadow="hover" style="height:403px;">
-                <div slot="header" class="clearfix">
-                    <span>待办事项</span>
-                    <el-button style="float: right; padding: 3px 0" type="text">添加</el-button>
-                </div>
-                <el-table :data="todoList" :show-header="false" height="304" style="width: 100%;font-size:14px;">
-                    <el-table-column width="40">
-                        <template slot-scope="scope">
-                            <el-checkbox v-model="scope.row.status"></el-checkbox>
-                        </template>
-                    </el-table-column>
-                    <el-table-column>
-                        <template slot-scope="scope">
-                            <div class="todo-item" :class="{'todo-item-del': scope.row.status}">{{scope.row.title}}</div>
-                        </template>
-                    </el-table-column>
-                    <el-table-column width="60">
-                        <template slot-scope="scope">
-                            <i class="el-icon-edit"></i>
-                            <i class="el-icon-delete"></i>
-                        </template>
-                    </el-table-column>
-                </el-table>
-            </el-card>
-        </el-col>
-    </el-row>
-    <el-row :gutter="20">
-        <el-col :span="12">
-            <el-card shadow="hover">
-                <schart ref="bar" class="schart" canvasId="bar" :data="data" type="bar" :options="options"></schart>
-            </el-card>
-        </el-col>
-        <el-col :span="12">
-            <el-card shadow="hover">
-                <schart ref="line" class="schart" canvasId="line" :data="data" type="line" :options="options2"></schart>
-            </el-card>
-        </el-col>
-    </el-row>
-</div>
-
-<script>
-
-    
-    new Vue( {
-        name: 'dashboard',
-        data() {
-            return {
-                name: localStorage.getItem('ms_username'),
-                todoList: [{
-                    title: '今天要修复100个bug',
-                    status: false,
-                },
-                {
-                    title: '今天要修复100个bug',
-                    status: false,
-                },
-                {
-                    title: '今天要写100行代码加几个bug吧',
-                    status: false,
-                }, {
-                    title: '今天要修复100个bug',
-                    status: false,
-                },
-                {
-                    title: '今天要修复100个bug',
-                    status: true,
-                },
-                {
-                    title: '今天要写100行代码加几个bug吧',
-                    status: true,
-                }
-                ],
-                data: [{
-                    name: '2018/09/04',
-                    value: 1083
-                },
-                {
-                    name: '2018/09/05',
-                    value: 941
-                },
-                {
-                    name: '2018/09/06',
-                    value: 1139
-                },
-                {
-                    name: '2018/09/07',
-                    value: 816
-                },
-                {
-                    name: '2018/09/08',
-                    value: 327
-                },
-                {
-                    name: '2018/09/09',
-                    value: 228
-                },
-                {
-                    name: '2018/09/10',
-                    value: 1065
-                }
-                ],
-                options: {
-                    title: '最近七天每天的用户访问量',
-                    showValue: false,
-                    fillColor: 'rgb(45, 140, 240)',
-                    bottomPadding: 30,
-                    topPadding: 30
-                },
-                options2: {
-                    title: '最近七天用户访问趋势',
-                    fillColor: '#FC6FA1',
-                    axisColor: '#008ACD',
-                    contentColor: '#EEEEEE',
-                    bgColor: '#F5F8FD',
-                    bottomPadding: 30,
-                    topPadding: 30
-                }
-            }
-        },
-        //components: {
-        //    Schart
-        //},
-        computed: {
-            role() {
-                return this.name === 'admin' ? '超级管理员' : '普通用户';
-            }
-        },
-        created() {
-            this.handleListener();
-            this.changeDate();
-        },
-        activated() {
-            this.handleListener();
-        },
-        deactivated() {
-            window.removeEventListener('resize', this.renderChart);
-            bus.$off('collapse', this.handleBus);
-        },
-        methods: {
-            changeDate() {
-                const now = new Date().getTime();
-                this.data.forEach((item, index) => {
-                    const date = new Date(now - (6 - index) * 86400000);
-                    item.name = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
-                })
-            },
-            handleListener() {
-                bus.$on('collapse', this.handleBus);
-                // 调用renderChart方法对图表进行重新渲染
-                window.addEventListener('resize', this.renderChart)
-            },
-            handleBus(msg) {
-                setTimeout(() => {
-                    this.renderChart()
-                }, 300);
-            },
-            renderChart() {
-                this.$refs.bar.renderChart();
-                this.$refs.line.renderChart();
-            }
-        }
-    })
-
-</script>
-
-
-<style scoped>
-    .el-row {
-        margin-bottom: 20px;
-    }
-
-    .grid-content {
-        display: flex;
-        align-items: center;
-        height: 100px;
-    }
-
-    .grid-cont-right {
-        flex: 1;
-        text-align: center;
-        font-size: 14px;
-        color: #999;
-    }
-
-    .grid-num {
-        font-size: 30px;
-        font-weight: bold;
-    }
-
-    .grid-con-icon {
-        font-size: 50px;
-        width: 100px;
-        height: 100px;
-        text-align: center;
-        line-height: 100px;
-        color: #fff;
-    }
-
-    .grid-con-1 .grid-con-icon {
-        background: rgb(45, 140, 240);
-    }
-
-    .grid-con-1 .grid-num {
-        color: rgb(45, 140, 240);
-    }
-
-    .grid-con-2 .grid-con-icon {
-        background: rgb(100, 213, 114);
-    }
-
-    .grid-con-2 .grid-num {
-        color: rgb(45, 140, 240);
-    }
-
-    .grid-con-3 .grid-con-icon {
-        background: rgb(242, 94, 67);
-    }
-
-    .grid-con-3 .grid-num {
-        color: rgb(242, 94, 67);
-    }
-
-    .user-info {
-        display: flex;
-        align-items: center;
-        padding-bottom: 20px;
-        border-bottom: 2px solid #ccc;
-        margin-bottom: 20px;
-    }
-
-    .user-avator {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-    }
-
-    .user-info-cont {
-        padding-left: 50px;
-        flex: 1;
-        font-size: 14px;
-        color: #999;
-    }
-
-        .user-info-cont div:first-child {
-            font-size: 30px;
-            color: #222;
-        }
-
-    .user-info-list {
-        font-size: 14px;
-        color: #999;
-        line-height: 25px;
-    }
-
-        .user-info-list span {
-            margin-left: 70px;
-        }
-
-    .mgb20 {
-        margin-bottom: 20px;
-    }
-
-    .todo-item {
-        font-size: 14px;
-    }
-
-    .todo-item-del {
-        text-decoration: line-through;
-        color: #999;
-    }
-
-    .schart {
-        width: 100%;
-        height: 300px;
-    }
-</style>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery/jQuery-2.2.0.min.js"></script>
+    <script src="js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

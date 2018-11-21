@@ -1,28 +1,31 @@
-﻿using Dapper.Contrib.Extensions;
+﻿
+using System;
+using DapperExtensions;
+using DapperExtensions.Mapper;
 
 namespace CfNet.Core.Domain
 {
-    [Table("Sys_Menu")]
+    [Serializable]
     public partial class SysMenu
     {
-        [Key]
-        public string MenuId { get; set; }
+
+        public int MenuId { get; set; }
 
         public string MenuName { get; set; }
 
-        public string MenuLevel { get; set; }
+        public int MenuLevel { get; set; }
 
-        public string ParentID { get; set; }
+        public int ParentID { get; set; }
 
         public string Url { get; set; }
 
-        public string Seq { get; set; }
+        public int Seq { get; set; }
 
-        public string CreateTime { get; set; }
+        public DateTime CreateTime { get; set; }
 
         public string CreateUser { get; set; }
 
-        public string UpdateTime { get; set; }
+        public DateTime UpdateTime { get; set; }
 
         public string UpdateUser { get; set; }
     }

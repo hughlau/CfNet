@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.0-beta1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -225,9 +231,17 @@
       <Project>{9d8c9fcb-3f08-46c7-b7fa-6900f915448c}</Project>
       <Name>CfNet.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CfNet.Data\CfNet.Data.csproj">
+      <Project>{de628d6c-a93d-439f-a8ed-58ca8ac5f1bb}</Project>
+      <Name>CfNet.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CfNet.Service\CfNet.Service.csproj">
       <Project>{3bf05ba8-ee10-437a-9f7f-c102849c37a6}</Project>
       <Name>CfNet.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CfNet.UIFrameWork\CfNet.UIFrameWork.csproj">
+      <Project>{df292023-ef1f-4a96-ae14-09797102b149}</Project>
+      <Name>CfNet.UIFrameWork</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

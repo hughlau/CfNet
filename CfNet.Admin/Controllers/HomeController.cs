@@ -10,6 +10,14 @@ namespace CfNet.Admin.Controllers
 {
     public class HomeController : Controller
     {
+
+        private readonly ISysMenuService _sysMenuService;
+
+        public HomeController(ISysMenuService sysMenuService)
+        {
+            this._sysMenuService = sysMenuService;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -17,8 +25,10 @@ namespace CfNet.Admin.Controllers
 
         public ActionResult About()
         {
-            SysMenuService service = new SysMenuService();
-            SysMenu menu= service.GetModel(1);
+            
+            IList<SysMenu> sysMenus= _sysMenuService.GetAll().ToList<SysMenu>();
+
+
             ViewBag.Message = "Your application description page.";
 
             return View();

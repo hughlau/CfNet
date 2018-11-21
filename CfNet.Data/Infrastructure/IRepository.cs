@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DapperExtensions;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -11,8 +12,35 @@ namespace CfNet.Data.Infrastructure
     {
         #region Method
 
+
+
+
+
         T GetModelByMainKey(int id);
 
+
+        IEnumerable<T> GetModels(IPredicateGroup predGroup, IList<ISort> sortlist = null);
+
+
+        IList<T> GetModelByPage(IPredicateGroup predGroup, int pageIndex, int pageSize, IList<ISort> sortlist = null);
+
+
+        int Count(IPredicateGroup predGroup);
+
+
+        dynamic Insert(T model);
+
+
+        void Inserts(IEnumerable<T> models);
+
+
+        void Update(T model);
+
+
+        void Delete(T model);
+
+
+        void DeleteByWhere(IPredicateGroup predGroup);
 
 
         #endregion

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3BF05BA8-EE10-437A-9F7F-C102849C37A6}</ProjectGuid>
+    <ProjectGuid>{DF292023-EF1F-4A96-AE14-09797102B149}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CfNet.Service</RootNamespace>
-    <AssemblyName>CfNet.Service</AssemblyName>
+    <RootNamespace>CfNet.UIFrameWork</RootNamespace>
+    <AssemblyName>CfNet.UIFrameWork</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,11 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.1.12\lib\net40\Dapper.dll</HintPath>
-    </Reference>
-    <Reference Include="DapperExtensions, Version=1.6.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DapperExtensions.1.6.3\lib\net45\DapperExtensions.dll</HintPath>
+    <Reference Include="Autofac, Version=4.9.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.0-beta1\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,22 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dependency\DependencyRegistrar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SysMenuService\ISysMenuService.cs" />
-    <Compile Include="SysMenuService\SysMenuService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CfNet.Core\CfNet.Core.csproj">
-      <Project>{9d8c9fcb-3f08-46c7-b7fa-6900f915448c}</Project>
-      <Name>CfNet.Core</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\CfNet.Data\CfNet.Data.csproj">
       <Project>{de628d6c-a93d-439f-a8ed-58ca8ac5f1bb}</Project>
       <Name>CfNet.Data</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\CfNet.Service\CfNet.Service.csproj">
+      <Project>{3bf05ba8-ee10-437a-9f7f-c102849c37a6}</Project>
+      <Name>CfNet.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
