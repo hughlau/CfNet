@@ -19,7 +19,7 @@ namespace CfNet.Data.Infrastructure
         T GetModelByMainKey(int id);
 
 
-        IEnumerable<T> GetModels(IPredicateGroup predGroup, IList<ISort> sortlist = null);
+        IList<T> GetModels(IPredicateGroup predGroup, IList<ISort> sortlist = null);
 
 
         IList<T> GetModelByPage(IPredicateGroup predGroup, int pageIndex, int pageSize, IList<ISort> sortlist = null);

@@ -154,37 +154,63 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MonitorController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\all.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\from.css" />
+    <Content Include="Content\index.css" />
+    <Content Include="Content\skins\_all-skins.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\common.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\schart.js" />
+    <Content Include="img\ajax-loader.gif" />
+    <Content Include="img\colse.png" />
+    <Content Include="img\opne.png" />
+    <Content Include="img\start.png" />
+    <Content Include="img\table_add.png" />
+    <Content Include="img\table_del.png" />
+    <Content Include="img\table_down.png" />
+    <Content Include="img\table_print.png" />
+    <Content Include="img\top_logo.png" />
+    <Content Include="img\user2-160x160.jpg" />
+    <Content Include="Scripts\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Scripts\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\bstable\css\bootstrap-table.css" />
+    <Content Include="Scripts\bstable\css\bootstrap.min.css" />
+    <Content Include="Scripts\bstable\js\bootstrap-table-zh-CN.min.js" />
+    <Content Include="Scripts\bstable\js\bootstrap-table.js" />
+    <Content Include="Scripts\bstable\js\bootstrap.min.js" />
+    <Content Include="Scripts\date\js\laydate.js" />
+    <Content Include="Scripts\date\need\laydate.css" />
+    <Content Include="Scripts\date\skins\danlan\laydate.css" />
+    <Content Include="Scripts\echarts\echarts-all.js" />
+    <Content Include="Scripts\editor\css\font-awesome.min.css" />
+    <Content Include="Scripts\editor\css\froala_editor.min.css" />
+    <Content Include="Scripts\editor\css\froala_page.min.css" />
+    <Content Include="Scripts\editor\js\froala_editor.min.js" />
+    <Content Include="Scripts\editor\js\plugins\block_styles.min.js" />
+    <Content Include="Scripts\editor\js\plugins\colors.min.js" />
+    <Content Include="Scripts\editor\js\plugins\font_family.min.js" />
+    <Content Include="Scripts\editor\js\plugins\font_size.min.js" />
+    <Content Include="Scripts\editor\js\plugins\lists.min.js" />
+    <Content Include="Scripts\editor\js\plugins\media_manager.min.js" />
+    <Content Include="Scripts\editor\js\plugins\tables.min.js" />
+    <Content Include="Scripts\editor\js\plugins\video.min.js" />
+    <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\jquery\jQuery-2.2.0.min.js" />
+    <Content Include="Scripts\layer_v2.1\layer\layer.js" />
+    <Content Include="Scripts\layer_v2.1\layer\skin\layer.css" />
+    <Content Include="Scripts\utf8-php\ueditor.all.min.js" />
+    <Content Include="Scripts\utf8-php\ueditor.config.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -196,13 +222,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
-    <Content Include="Views\Shared\_Sidebar.cshtml" />
-    <Content Include="Views\Shared\_Tags.cshtml" />
-    <Content Include="Scripts\Vue.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -214,13 +235,32 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="fonts\fontawesome-webfont.eot-" />
+    <Content Include="fonts\fontawesome-webfont.eot-v=4.5.0" />
+    <Content Include="fonts\fontawesome-webfont.svg-v=4.5.0" />
+    <Content Include="fonts\fontawesome-webfont.ttf-v=4.5.0" />
+    <Content Include="fonts\fontawesome-webfont.woff-v=4.5.0" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\bootstrap\fonts\glyphicons-halflings-regular.eot-" />
+    <Content Include="Scripts\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\bstable\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\bstable\fonts\glyphicons-halflings-regular.eot-" />
+    <Content Include="Scripts\bstable\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\bstable\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\bstable\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\bstable\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\editor\fonts\fontawesome-webfont.eot-" />
+    <Content Include="Scripts\editor\fonts\fontawesome-webfont.eot-v=4.2.0" />
+    <Content Include="Scripts\editor\fonts\fontawesome-webfont.svg-v=4.2.0" />
+    <Content Include="Scripts\editor\fonts\fontawesome-webfont.ttf-v=4.2.0" />
+    <Content Include="Scripts\editor\fonts\fontawesome-webfont.woff-v=4.2.0" />
+    <Content Include="Views\Home\Menu.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Monitor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CfNet.Common\CfNet.Common.csproj">

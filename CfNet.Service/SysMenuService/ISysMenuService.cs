@@ -9,6 +9,6 @@ namespace CfNet.Service.SysMenuService
 {
     public partial interface ISysMenuService
     {
-        IEnumerable<SysMenu> GetAll();
+        IList<SysMenu> GetAll();
     }
 }

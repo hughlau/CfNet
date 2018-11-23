@@ -12,23 +12,26 @@ using System;
 *****************************************************************/
 namespace CfNet.Data.Mapper
 {
-    [Serializable]
-    public class SysMenuMapper:ClassMapper<SysMenu>
+
+    public class CustomMapper<T>: ClassMapper<T> where T:class
     {
         #region Field
         #endregion
 
         #region Ctor
 
-        public SysMenuMapper()
-        {
-            base.Table("Sys_Menu");
-            AutoMap();
-        }
-
         #endregion
 
         #region Method
+
+        public override void Table(string tableName)
+        {
+            if (tableName.Equals("SysMenu", StringComparison.CurrentCultureIgnoreCase))
+            {
+                TableName = "Sys_Menu";
+            }
+            AutoMap();
+        }
 
         #endregion
     }

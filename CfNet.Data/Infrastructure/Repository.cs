@@ -6,6 +6,8 @@ using CfNet.Core.Infrastructure;
 using Dapper;
 using DapperExtensions;
 using System.Linq;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace CfNet.Data.Infrastructure
 {
@@ -27,7 +29,7 @@ namespace CfNet.Data.Infrastructure
 
         private IDbConnection GetConn()
         {
-            var connection = ConnectionFactory.Instance.GetConn();
+            var connection = new SqlConnection(ConfigurationManager.AppSettings["strconn"].ToString());
             connection.Open();
             return connection;
         }
@@ -41,11 +43,11 @@ namespace CfNet.Data.Infrastructure
             }
         }
 
-        public IEnumerable<T> GetModels(IPredicateGroup predGroup, IList<ISort> sortlist = null)
+        public IList<T> GetModels(IPredicateGroup predGroup, IList<ISort> sortlist = null)
         {
             using (IDbConnection conn = GetConn())
             {
-                return conn.GetList<T>(predGroup, sortlist);
+                return conn.GetList<T>(predGroup,sortlist).ToList<T>();
             }
         }
 

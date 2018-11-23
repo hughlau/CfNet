@@ -1,5 +1,6 @@
 ﻿using CfNet.Core.Domain;
 using CfNet.Data.Infrastructure;
+using DapperExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,14 +37,13 @@ namespace CfNet.Service.SysMenuService
 
         #region Method
 
-        public IEnumerable<SysMenu> GetAll()
+        public IList<SysMenu> GetAll()
         {
             try
             {
-                SysMenu  fda= _sysmenuRepository.GetModelByMainKey(1);
                 return _sysmenuRepository.GetModels(null);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;

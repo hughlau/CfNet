@@ -26,13 +26,21 @@ namespace CfNet.Admin
             //依赖注入 
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+
+            #region Service
+
+
             builder.RegisterType<SysMenuService>().As<ISysMenuService>().InstancePerLifetimeScope();
+
+            #endregion
+
+
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
             var container = builder.Build();
-            //DependencyRegistrar.Register(builder);
-            
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+            MapperRegister.Initialize();
         }
     }
 }

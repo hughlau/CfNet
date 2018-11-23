@@ -12,6 +12,8 @@ namespace CfNet.Data.Infrastructure
 
         private static readonly ConnectionFactory instance = null;
 
+        public SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["strconn"].ToString());
+
         public static ConnectionFactory Instance
         {
             get
@@ -37,11 +39,7 @@ namespace CfNet.Data.Infrastructure
         #region Method
 
 
-        public IDbConnection GetConn()
-        {
-            string strconn= ConfigurationManager.AppSettings["strconn"].ToString();
-            return new SqlConnection(strconn);
-        }
+
         
 
         #endregion
