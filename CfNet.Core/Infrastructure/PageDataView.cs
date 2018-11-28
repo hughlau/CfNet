@@ -13,13 +13,13 @@ namespace CfNet.Core.Infrastructure
         {
             this._Items = new List<T>();
         }
-        public int TotalNum
+        public int total
         {
             get { return _TotalNum; }
             set { _TotalNum = value; }
         }
         private IList<T> _Items;
-        public IList<T> Items
+        public IList<T> rows
         {
             get { return _Items; }
             set { _Items = value; }

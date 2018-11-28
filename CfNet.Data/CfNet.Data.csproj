@@ -53,7 +53,7 @@
     <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Infrastructure\MapperRegister.cs" />
     <Compile Include="Infrastructure\Repository.cs" />
-    <Compile Include="Mapper\SysMenuMapper.cs" />
+    <Compile Include="Mapper\CustomMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

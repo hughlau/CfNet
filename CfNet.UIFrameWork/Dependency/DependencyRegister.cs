@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using CfNet.Core.Infrastructure.DependencyManagement;
+using CfNet.Core.Infrastructure.Reflect;
 using CfNet.Data.Infrastructure;
 using CfNet.Service.SysMenuService;
 using System;
@@ -18,7 +20,7 @@ using System.Threading.Tasks;
 *****************************************************************/
 namespace CfNet.UIFrameWork.Dependency
 {
-    public class DependencyRegister
+    public class DependencyRegister : IDependencyRegistrar
     {
         #region Field
         #endregion
@@ -32,6 +34,22 @@ namespace CfNet.UIFrameWork.Dependency
         {
 
 
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+
+            #region Service
+
+
+            builder.RegisterType<SysMenuService>().As<ISysMenuService>().InstancePerLifetimeScope();
+
+            #endregion
+
+
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
+        }
+
+        public void Register(ContainerBuilder builder, ITypeFinder typeFinder)
+        {
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
 
             #region Service

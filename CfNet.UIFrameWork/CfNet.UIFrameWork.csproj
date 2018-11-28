@@ -76,6 +76,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CfNet.Core\CfNet.Core.csproj">
+      <Project>{9d8c9fcb-3f08-46c7-b7fa-6900f915448c}</Project>
+      <Name>CfNet.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CfNet.Data\CfNet.Data.csproj">
       <Project>{de628d6c-a93d-439f-a8ed-58ca8ac5f1bb}</Project>
       <Name>CfNet.Data</Name>

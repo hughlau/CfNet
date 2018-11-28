@@ -30,6 +30,10 @@ namespace CfNet.Data.Mapper
             {
                 TableName = "Sys_Menu";
             }
+            if (tableName.Equals("SysUser", StringComparison.CurrentCultureIgnoreCase))
+            {
+                TableName = "Sys_User";
+            }
             AutoMap();
         }
 

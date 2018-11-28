@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using CfNet.Data.Infrastructure;
+using CfNet.Service.BaseService;
 using CfNet.Service.SysMenuService;
+using CfNet.Service.SysUserService;
 using CfNet.UIFrameWork.Dependency;
 using System;
 using System.Collections.Generic;
@@ -29,8 +31,8 @@ namespace CfNet.Admin
 
             #region Service
 
-
             builder.RegisterType<SysMenuService>().As<ISysMenuService>().InstancePerLifetimeScope();
+            builder.RegisterType<SysUserService>().As<ISysUserService>().InstancePerLifetimeScope();
 
             #endregion
 
