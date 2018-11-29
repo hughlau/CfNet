@@ -1,30 +1,30 @@
-﻿using CfNet.Data.Mapper;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 /****************************************************************
 *   Author：L
-*   Time：2018/11/22 9:30:29
+*   Time：2018/11/29 9:48:07
 *   FrameVersion：4.6.1
 *   Description：
 *
 *****************************************************************/
-namespace CfNet.Data.Infrastructure
+namespace CfNet.Core.Data
 {
-    public class MapperRegister
+    public interface IDataProviderManager
     {
         #region Field
         #endregion
 
         #region Ctor
-
-        public static void Initialize()
-        {
-            DapperExtensions.DapperExtensions.DefaultMapper = typeof(CustomMapper<>);
-        }
-
         #endregion
 
         #region Method
+
+        IDataProvider LoadDataProvider();
+
         #endregion
     }
 }

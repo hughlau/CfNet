@@ -51,6 +51,9 @@
     <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="DapperExtensions, Version=1.6.3.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -163,6 +166,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Settings.txt" />
     <Content Include="Content\all.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\from.css" />
@@ -227,7 +231,6 @@
     <Content Include="Views\Shared\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,12 +1,11 @@
 ﻿
 using System;
-using DapperExtensions;
-using DapperExtensions.Mapper;
+using CfNet.Core.Domain.Base;
 
 namespace CfNet.Core.Domain
 {
     [Serializable]
-    public partial class SysMenu
+    public partial class SysMenu : BaseEntity
     {
 
         public int MenuId { get; set; }

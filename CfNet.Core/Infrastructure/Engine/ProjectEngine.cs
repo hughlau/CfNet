@@ -1,12 +1,17 @@
 ﻿using Autofac;
 using Autofac.Core;
+using Autofac.Core.Lifetime;
+using Autofac.Integration.Mvc;
 using CfNet.Core.Infrastructure.DependencyManagement;
 using CfNet.Core.Infrastructure.Reflect;
+using CfNet.Core.Infrastructure.StartupTask;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 /****************************************************************
 *   Author：L
@@ -21,7 +26,7 @@ namespace CfNet.Core.Infrastructure.Engine
     {
         #region Field
 
-        private Container container;
+        private IContainer _container;
 
         #endregion
 
@@ -29,6 +34,20 @@ namespace CfNet.Core.Infrastructure.Engine
         #endregion
 
         #region Utility
+
+
+        protected virtual void RunStartupTasks()
+        {
+            var typeFinder = _container.Resolve<ITypeFinder>();
+            var startUpTaskTypes = typeFinder.FindClassesOfType<IStartupTask>();
+            var startUpTasks = new List<IStartupTask>();
+            foreach (var startUpTaskType in startUpTaskTypes)
+                startUpTasks.Add((IStartupTask)Activator.CreateInstance(startUpTaskType));
+            //sort
+            startUpTasks = startUpTasks.AsQueryable().OrderBy(st => st.Order).ToList();
+            foreach (var startUpTask in startUpTasks)
+                startUpTask.Execute();
+        }
 
         protected virtual void RegisterDependencies()
         {
@@ -45,15 +64,36 @@ namespace CfNet.Core.Infrastructure.Engine
             foreach (var drType in drTypes)
                 drInstances.Add((IDependencyRegistrar)Activator.CreateInstance(drType));
             //sort
-            drInstances = drInstances.AsQueryable().OrderBy(t => t.Order).ToList();
+            drInstances = drInstances.AsQueryable().ToList();
             foreach (var dependencyRegistrar in drInstances)
-                dependencyRegistrar.Register(builder, typeFinder, config);
+                dependencyRegistrar.Register(builder, typeFinder);
 
             var container = builder.Build();
-            this._containerManager = new ContainerManager(container);
+            this._container = container;
 
             //set dependency resolver
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+        }
+
+        public virtual ILifetimeScope Scope()
+        {
+            try
+            {
+                if (HttpContext.Current != null)
+                    return AutofacDependencyResolver.Current.RequestLifetimeScope;
+
+                //when such lifetime scope is returned, you should be sure that it'll be disposed once used (e.g. in schedule tasks)
+                return _container.BeginLifetimeScope(MatchingScopeLifetimeTags.RequestLifetimeScopeTag);
+            }
+            catch (Exception)
+            {
+                //we can get an exception here if RequestLifetimeScope is already disposed
+                //for example, requested in or after "Application_EndRequest" handler
+                //but note that usually it should never happen
+
+                //when such lifetime scope is returned, you should be sure that it'll be disposed once used (e.g. in schedule tasks)
+                return _container.BeginLifetimeScope(MatchingScopeLifetimeTags.RequestLifetimeScopeTag);
+            }
         }
 
         #endregion
@@ -62,22 +102,25 @@ namespace CfNet.Core.Infrastructure.Engine
 
         public void Initialize()
         {
-            throw new NotImplementedException();
+            RegisterDependencies();
+
+            RunStartupTasks();
         }
 
         public T Resolve<T>() where T : class
         {
-            throw new NotImplementedException();
+            return _container.Resolve<T>();
         }
 
         public object Resolve(Type type)
         {
-            throw new NotImplementedException();
+            return _container.Resolve(type);
         }
 
         public T[] ResolveAll<T>()
         {
-            throw new NotImplementedException();
+            ILifetimeScope scope =Scope();
+            return scope.Resolve<IEnumerable<T>>().ToArray();
         }
 
         #endregion

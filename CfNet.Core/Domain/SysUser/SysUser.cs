@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CfNet.Core.Domain.Base;
+using System;
+
 
 /****************************************************************
 *   Author：L
@@ -14,7 +12,7 @@ using System.Threading.Tasks;
 namespace CfNet.Core.Domain.SysUser
 {
     [Serializable]
-    public partial class SysUser
+    public partial class SysUser : BaseEntity
     {
         #region Field
 

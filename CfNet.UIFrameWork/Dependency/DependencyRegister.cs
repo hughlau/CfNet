@@ -1,15 +1,14 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using CfNet.Core.Data;
+using CfNet.Core.Data.Infrastructure;
 using CfNet.Core.Infrastructure.DependencyManagement;
 using CfNet.Core.Infrastructure.Reflect;
 using CfNet.Data.Infrastructure;
 using CfNet.Service.SysMenuService;
-using System;
-using System.Collections.Generic;
+using CfNet.Service.SysUserService;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 /****************************************************************
 *   Author：L
@@ -32,17 +31,12 @@ namespace CfNet.UIFrameWork.Dependency
 
         public static void Register(ContainerBuilder builder)
         {
-
-
+            //依赖注入 
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
 
-            #region Service
-
-
+            //Service
             builder.RegisterType<SysMenuService>().As<ISysMenuService>().InstancePerLifetimeScope();
-
-            #endregion
-
+            builder.RegisterType<SysUserService>().As<ISysUserService>().InstancePerLifetimeScope();
 
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
@@ -50,17 +44,17 @@ namespace CfNet.UIFrameWork.Dependency
 
         public void Register(ContainerBuilder builder, ITypeFinder typeFinder)
         {
+            builder.RegisterType<DataProviderManager>().As<IDataProviderManager>().InstancePerLifetimeScope();
+
+            //依赖注入 
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
 
-            #region Service
-
-
+            //Service
             builder.RegisterType<SysMenuService>().As<ISysMenuService>().InstancePerLifetimeScope();
+            builder.RegisterType<SysUserService>().As<ISysUserService>().InstancePerLifetimeScope();
 
-            #endregion
-
-
-            builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            //builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
         }
 

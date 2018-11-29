@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using CfNet.Core.Infrastructure.Engine;
 using CfNet.Data.Infrastructure;
 using CfNet.Service.BaseService;
 using CfNet.Service.SysMenuService;
@@ -26,21 +27,21 @@ namespace CfNet.Admin
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             //依赖注入 
-            ContainerBuilder builder = new ContainerBuilder();
-            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+            //ContainerBuilder builder = new ContainerBuilder();
+            //builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
 
-            #region Service
+            //#region Service
 
-            builder.RegisterType<SysMenuService>().As<ISysMenuService>().InstancePerLifetimeScope();
-            builder.RegisterType<SysUserService>().As<ISysUserService>().InstancePerLifetimeScope();
+            //builder.RegisterType<SysMenuService>().As<ISysMenuService>().InstancePerLifetimeScope();
+            //builder.RegisterType<SysUserService>().As<ISysUserService>().InstancePerLifetimeScope();
 
-            #endregion
+            //#endregion
 
-
-            builder.RegisterControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
-            var container = builder.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            //builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
+            //var container = builder.Build();
+            //DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            EngineContext.Initialize(false);
 
             MapperRegister.Initialize();
         }

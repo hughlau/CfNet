@@ -8,19 +8,26 @@ using DapperExtensions;
 using System.Linq;
 using System.Data.SqlClient;
 using System.Configuration;
+using CfNet.Core.Data;
+using CfNet.Core.Domain.Base;
 
 namespace CfNet.Data.Infrastructure
 {
-    public partial class Repository<T> : IRepository<T> where T : class, new()
+    public partial class Repository<T> : IRepository<T> where T : BaseEntity, new()
     {
         #region Field
 
+        private IDataProviderManager _dataProviderManager;
 
         #endregion
 
 
         #region Ctor
 
+        public Repository(IDataProviderManager dataProviderManager)
+        {
+            this._dataProviderManager = dataProviderManager;
+        }
 
         #endregion
 
@@ -29,7 +36,7 @@ namespace CfNet.Data.Infrastructure
 
         private IDbConnection GetConn()
         {
-            var connection = new SqlConnection(ConfigurationManager.AppSettings["strconn"].ToString());
+            var connection = _dataProviderManager.LoadDataProvider().GetDbConnection();
             connection.Open();
             return connection;
         }
