@@ -23,6 +23,9 @@ namespace CfNet.Service.BaseService
 
         int GetCount(IPredicateGroup predicateGroup);
 
+        T Get(int id);
+
+        T GetFirstOrDefault(IPredicateGroup predicateGroup);
         #endregion
     }
 }

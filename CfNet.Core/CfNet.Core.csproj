@@ -88,8 +88,10 @@
     <Compile Include="Data\MySqlDataProvider.cs" />
     <Compile Include="Data\SqlServerDataProvider.cs" />
     <Compile Include="Domain\Base\BaseEntity.cs" />
+    <Compile Include="Domain\Dict\SysUser.cs" />
     <Compile Include="Domain\SysMenu\SysMenu.cs" />
     <Compile Include="Domain\SysUser\SysUser.cs" />
+    <Compile Include="Domain\SysUser\SysUserAuth.cs" />
     <Compile Include="Helper\CommonHelper.cs" />
     <Compile Include="Infrastructure\DependencyManagement\IDependencyRegistrar.cs" />
     <Compile Include="Infrastructure\Engine\EngineContext.cs" />

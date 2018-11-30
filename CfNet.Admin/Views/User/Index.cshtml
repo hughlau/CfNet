@@ -28,17 +28,18 @@
 
         <i class="down_i"></i><a href="#" class="add_a">导出</a>
         <i class="print_i"></i><a href="#" class="add_a">打印</a>
+        <span style="float:right"><i class="add_i"></i><a href="javascript:openlayer(0)" class="add_a">新建用户</a></span>
     </p>
     <p>
-        <table data-url="json/data_alae_list.json" id="table" class="table_style" style="margin: 0 auto"></table>
+        <table id="table" class="table_style" style="margin: 0 auto"></table>
     </p>
 
-    <script src="~/Scripts/jquery/jQuery-2.2.0.min.js" ></script>
-    <script src="~/Scripts/bstable/js/bootstrap.min.js" ></script>
-    <script src="~/Scripts/bstable/js/bootstrap-table.js" ></script>
+    <script src="~/Scripts/jquery/jQuery-2.2.0.min.js"></script>
+    <script src="~/Scripts/bstable/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/bstable/js/bootstrap-table.js"></script>
     <script src="~/Scripts/bstable/js/bootstrap-table-zh-CN.min.js"></script>
-    <script src="~/Scripts/date/js/laydate.js" ></script>
-
+    <script src="~/Scripts/date/js/laydate.js"></script>
+    <script src="@Url.Content("~/Scripts/index.js")"></script>
 
     <script type="text/javascript">
         function datas() {
@@ -59,8 +60,8 @@
                     var temp = {
                         pageSize: params.limit,                         //页面大小
                         pageNumber: (params.offset / params.limit) + 1,   //页码
-                        sort: "UserID",      //排序列名  
-                        sortOrder: "asc", //排位命令（desc，asc） 
+                        sort: "UserID",      //排序列名
+                        sortOrder: "asc", //排位命令（desc，asc）
                         userName: $("#txtUser").val(),
                         mobile: $("#txtMobile").val(),
                         slExist: $("#slExist").val()
@@ -124,58 +125,61 @@
                         field: 'opear',
                         align: 'center',
                         formatter: function (value, row) {
-                            var e = '<a  href="#" title="查看详情" onclick="handleEvent(\'' + row.id + '\')">编辑</a> ';
+                            var e = '<a class="menuItem"  href="javascript:openlayer(' + row.UserID + ')" title="查看详情">编辑</a> ';
 
 
                             return e;
                         }
                     }
-                ]
+                ],
+                onPostBody: function () {
+                    
+                }
             });
         }
-    $(function () {
-        datas();
-        $("#but_open").click(function () {
-            var opt = {
-                url: "PageData",
-                silent: true,
-                pageSize: 10,                         //页面大小
-                pageNumber: 1,   //页码
-                sort: "UserID",      //排序列名  
-                sortOrder: "asc", //排位命令（desc，asc） 
-                userName: $("#txtUser").val(),
-                mobile: $("#txtMobile").val(),
-                slExist: $("#slExist").val()
-            };
+        $(function () {
+            datas();
+            $("#but_open").click(function () {
+                var opt = {
+                    url: "PageData",
+                    silent: true,
+                    pageSize: 10,                         //页面大小
+                    pageNumber: 1,   //页码
+                    sort: "UserID",      //排序列名
+                    sortOrder: "asc", //排位命令（desc，asc）
+                    userName: $("#txtUser").val(),
+                    mobile: $("#txtMobile").val(),
+                    slExist: $("#slExist").val()
+                };
 
-            $("#table").bootstrapTable('refresh', opt);
-        });
-        $("#but_close02").click(function () {
-            $("#txtUser").val('');
-            $("#txtMobile").val('');
-            $("#slExist").val('2');
+                $("#table").bootstrapTable('refresh', opt);
+            });
+            $("#but_close02").click(function () {
+                $("#txtUser").val('');
+                $("#txtMobile").val('');
+                $("#slExist").val('2');
+            })
         })
-    })
 
     </script>
-    <script src="~/Scripts/layer_v2.1/layer/layer.js" ></script>
+    <script src="~/Scripts/layer/layer.js"></script>
     <script>
-    function openlayer(id){
-        layer.open({
-            type: 2,
-            title: '添加信息',
-            shadeClose: true,
-            shade: 0.5,
-            skin: 'layui-layer-rim',
-//            maxmin: true,
-            closeBtn:1,
-            area: ['98%', '92%'],
-            shadeClose: true,
-            closeBtn: 1,
-            content: 'http://www.17sucai.com/preview/860087/2018-11-14/%E7%BB%BC%E5%90%88%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/lay01.html'
-            //iframe的url
-        });
-    }
+        function openlayer(id) {
+            layer.open({
+                type: 2,
+                title: id==0?'添加信息':'修改信息',
+                shade: 0.5,
+                skin: 'layui-layer-rim',
+                area: ['80%', '80%'],
+                content: '/User/Edit'+ id,
+                cancel: function (index, layero) {
+                    if (confirm('确定要关闭么')) { //只有当点击confirm框的确定时，该层才会关闭
+                        layer.close(index)
+                    }
+                    return false;
+                }    
+            });
+        }
     </script>
 
 

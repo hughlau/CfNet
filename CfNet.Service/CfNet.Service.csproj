@@ -52,7 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysMenuService\ISysMenuService.cs" />
     <Compile Include="SysMenuService\SysMenuService.cs" />
+    <Compile Include="SysUserService\ISysUserAuthService.cs" />
     <Compile Include="SysUserService\ISysUserService.cs" />
+    <Compile Include="SysUserService\SysUserAuthService.cs" />
     <Compile Include="SysUserService\SysUserService.cs" />
   </ItemGroup>
   <ItemGroup>

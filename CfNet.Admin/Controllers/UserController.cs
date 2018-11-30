@@ -1,4 +1,7 @@
-﻿using CfNet.Core.Domain.SysUser;
+﻿using CfNet.Admin.ModelFactories;
+using CfNet.Admin.Models.SysUser;
+using CfNet.Core.Domain.Dict;
+using CfNet.Core.Domain.SysUser;
 using CfNet.Core.Infrastructure;
 using CfNet.Service.SysUserService;
 using DapperExtensions;
@@ -13,14 +16,46 @@ namespace CfNet.Admin.Controllers
     public class UserController : Controller
     {
         private readonly ISysUserService _sysUserService;
+        private readonly ISysUserAuthService _sysUserAuthService;
+        private readonly ISysUserModelFactory _modelFactory;
 
-        public UserController(ISysUserService sysUserService)
+        public UserController(ISysUserService sysUserService,ISysUserAuthService sysUserAuthService
+            ,ISysUserModelFactory modelFactory)
         {
             this._sysUserService = sysUserService;
+            this._sysUserAuthService = sysUserAuthService;
+            this._modelFactory = modelFactory;
         }
 
         // GET: User
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Edit(int id)
+        {
+            SysUserEditModel model = null;
+            if (id!=0)
+            {
+                IList<IPredicate> predList = new List<IPredicate>();
+                predList.Add(Predicates.Field<SysUserAuth>(p => p.AuthType, Operator.Eq, (int)DictSysUserAuth.loginname));
+                predList.Add(Predicates.Field<SysUserAuth>(p => p.UserId, Operator.Eq, id));
+                IPredicateGroup predGroup = Predicates.Group(GroupOperator.And, predList.ToArray());
+
+                SysUser sysUser = _sysUserService.Get(id);
+                SysUserAuth userAuth = _sysUserAuthService.GetFirstOrDefault(predGroup);
+
+                model = _modelFactory.PrepareUser(sysUser, userAuth);
+            }
+            else
+            {
+                model = new SysUserEditModel();
+            }
+            return View(model);
+        }
+
+        public ActionResult te()
         {
             return View();
         }

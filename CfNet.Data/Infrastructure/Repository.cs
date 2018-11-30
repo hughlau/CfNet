@@ -74,6 +74,14 @@ namespace CfNet.Data.Infrastructure
             }
         }
 
+        public T GetFirstOrDefault(IPredicateGroup predGroup)
+        {
+            using (IDbConnection conn = GetConn())
+            {
+                return conn.GetList<T>(predGroup).FirstOrDefault();
+            }
+        }
+
         public dynamic Insert(T model)
         {
             using (IDbConnection conn=GetConn())

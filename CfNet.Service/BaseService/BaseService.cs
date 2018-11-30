@@ -78,6 +78,32 @@ namespace CfNet.Service.BaseService
             }
         }
 
+        public T Get(int id)
+        {
+            try
+            {
+                return _repository.GetModelByMainKey(id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public T GetFirstOrDefault(IPredicateGroup predicateGroup)
+        {
+            try
+            {
+                return _repository.GetFirstOrDefault(predicateGroup);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         #endregion
     }
 }

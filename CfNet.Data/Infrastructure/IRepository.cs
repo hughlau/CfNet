@@ -27,6 +27,7 @@ namespace CfNet.Data.Infrastructure
 
         int Count(IPredicateGroup predGroup);
 
+        T GetFirstOrDefault(IPredicateGroup predGroup);
 
         dynamic Insert(T model);
 
