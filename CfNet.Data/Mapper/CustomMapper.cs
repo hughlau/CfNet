@@ -34,6 +34,10 @@ namespace CfNet.Data.Mapper
             {
                 TableName = "Sys_User";
             }
+            if (tableName.Equals("SysUserAuth", StringComparison.CurrentCultureIgnoreCase))
+            {
+                TableName = "Sys_User_Auth";
+            }
             AutoMap();
         }
 

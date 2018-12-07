@@ -28,9 +28,22 @@ namespace CfNet.Service.SysUserService
         {
         }
 
+
+
         #endregion
 
         #region Method
+
+        public void Update(SysUser user)
+        {
+            SysUser model=_repository.GetModelByMainKey(user.UserID);
+            model.UserName = user.UserName;
+            model.IsExist = user.IsExist;
+            model.Mobile = user.Mobile;
+            model.Email = user.Email;
+            model.UpdateTime = DateTime.Now.ToShortDateString();
+            _repository.Update(model);
+        }
 
         #endregion
     }

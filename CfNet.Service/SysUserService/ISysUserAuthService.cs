@@ -13,6 +13,6 @@ namespace CfNet.Service.SysUserService
 {
     public interface ISysUserAuthService:IBaseService<SysUserAuth>
     {
-
+        void UpdateAuth(SysUserAuth sysUserAuth);
     }
 }

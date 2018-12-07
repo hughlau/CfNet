@@ -33,6 +33,7 @@ namespace CfNet.Admin.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             SysUserEditModel model = null;
@@ -53,6 +54,26 @@ namespace CfNet.Admin.Controllers
                 model = new SysUserEditModel();
             }
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(SysUserEditModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                if (model.UserID!=0)
+                {
+                    UpdateUser(model);
+                }
+                else
+                {
+                    AddUser(model);
+                }
+                return Content("success");
+            }
+            return Content("");
+            
         }
 
         public ActionResult te()
@@ -99,6 +120,49 @@ namespace CfNet.Admin.Controllers
             return new JsonResult() {
                 Data = result
             };
+        }
+
+        public void AddUser(SysUserEditModel model)
+        {
+            SysUser user = new SysUser()
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                Mobile = model.Mobile,
+                IsExist = model.IsExist ? 0 : 1
+            };
+            int userid = _sysUserService.Add(user);
+            SysUserAuth auth = new SysUserAuth()
+            {
+                UserId = userid,
+                AuthType = (int)DictSysUserAuth.loginname,
+                Openid = model.LoginName,
+                AccessToken = model.Password
+            };
+            _sysUserAuthService.Add(auth);
+        }
+
+        public void UpdateUser(SysUserEditModel model)
+        {
+            SysUser user = new SysUser()
+            {
+                UserID = model.UserID,
+                UserName = model.UserName,
+                Email = model.Email,
+                Mobile = model.Mobile,
+                IsExist = model.IsExist ? 0 : 1
+            };
+
+            SysUserAuth auth = new SysUserAuth()
+            {
+                UserId = model.UserID,
+                AuthType = (int)DictSysUserAuth.loginname,
+                Openid = model.LoginName,
+                AccessToken = model.Password
+            };
+
+            _sysUserService.Update(user);
+            _sysUserAuthService.UpdateAuth(auth);
         }
     }
 }

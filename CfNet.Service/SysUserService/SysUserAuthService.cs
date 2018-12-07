@@ -1,6 +1,8 @@
-﻿using CfNet.Core.Domain.SysUser;
+﻿using CfNet.Core.Domain.Dict;
+using CfNet.Core.Domain.SysUser;
 using CfNet.Data.Infrastructure;
 using CfNet.Service.BaseService;
+using DapperExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,29 @@ namespace CfNet.Service.SysUserService
         #endregion
 
         #region Method
+
+        public void UpdateAuth(SysUserAuth sysUserAuth)
+        {
+            IList<IPredicate> predList = new List<IPredicate>();
+            predList.Add(Predicates.Field<SysUserAuth>(p => p.AuthType, Operator.Eq, (int)DictSysUserAuth.loginname));
+            predList.Add(Predicates.Field<SysUserAuth>(p => p.UserId, Operator.Eq, sysUserAuth.UserId));
+            IPredicateGroup predGroup = Predicates.Group(GroupOperator.And, predList.ToArray());
+
+            SysUserAuth model = _repository.GetFirstOrDefault(predGroup);
+            if (null==model)
+            {
+                Add(sysUserAuth);
+            }
+            else
+            {
+                model.Openid = sysUserAuth.Openid;
+                model.AccessToken = sysUserAuth.AccessToken;
+
+                _repository.Update(model);
+            }
+            
+        }
+
         #endregion
 
     }

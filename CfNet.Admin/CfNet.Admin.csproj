@@ -163,6 +163,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\DependencyRegistrar.cs" />
     <Compile Include="ModelFactories\ISysUserModelFactory.cs" />
     <Compile Include="ModelFactories\SysUserModelFactory.cs" />
     <Compile Include="Models\SysUser\SysUserEditModel.cs" />
@@ -214,7 +215,15 @@
     <Content Include="Scripts\editor\js\plugins\tables.min.js" />
     <Content Include="Scripts\editor\js\plugins\video.min.js" />
     <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\jquery\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery\jQuery-2.2.0.min.js" />
+    <None Include="Scripts\jquery\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\poshytip\jquery.poshytip.js" />
+    <Content Include="Scripts\jquery\jquery.validate.js" />
+    <Content Include="Scripts\jquery\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\layer\layer.js" />
     <Content Include="Scripts\layer\mobile\layer.js" />
     <Content Include="Scripts\layer\mobile\need\layer.css" />
@@ -226,6 +235,12 @@
     <Content Include="Scripts\layer\theme\default\loading-2.gif" />
     <Content Include="Scripts\layer_v2.1\layer\layer.js" />
     <Content Include="Scripts\layer_v2.1\layer\skin\layer.css" />
+    <Content Include="Scripts\poshytip\tip-skyblue\tip-skyblue.css" />
+    <Content Include="Scripts\poshytip\tip-skyblue\tip-skyblue.png" />
+    <Content Include="Scripts\poshytip\tip-skyblue\tip-skyblue_arrows.png" />
+    <Content Include="Scripts\poshytip\tip-yellow\tip-yellow.css" />
+    <Content Include="Scripts\poshytip\tip-yellow\tip-yellow.png" />
+    <Content Include="Scripts\poshytip\tip-yellow\tip-yellow_arrows.png" />
     <Content Include="Scripts\utf8-php\ueditor.all.min.js" />
     <Content Include="Scripts\utf8-php\ueditor.config.js" />
     <Content Include="Web.config" />
@@ -242,7 +257,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Infrastructure\Factories\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

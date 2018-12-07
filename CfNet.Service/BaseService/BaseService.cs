@@ -18,7 +18,7 @@ namespace CfNet.Service.BaseService
     {
         #region Field
 
-        private readonly IRepository<T> _repository;
+        protected readonly IRepository<T> _repository;
 
         #endregion
 
@@ -35,73 +35,38 @@ namespace CfNet.Service.BaseService
 
         public IList<T> GetAll()
         {
-            try
-            {
-                return _repository.GetModels(null);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            return _repository.GetModels(null);
         }
 
         public PageDataView<T> GetPageView(IPredicateGroup predicateGroup,int pageIndex,int pageSize,IList<ISort> sorts)
         {
-            try
-            {
-                PageDataView<T> page = new PageDataView<T>();
-                page.total = GetCount(predicateGroup);
-                IList<T> ts= _repository.GetModelByPage(predicateGroup, pageIndex, pageSize,sorts);
-                page.rows = ts;
-                page.CurrentPage = pageIndex;
-                page.TotalPageCount = (page.total % pageSize) == 0 ? page.total / pageSize : ((int)Math.Floor((double)(page.total / pageSize)) + 1);
-                return page;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            PageDataView<T> page = new PageDataView<T>();
+            page.total = GetCount(predicateGroup);
+            IList<T> ts = _repository.GetModelByPage(predicateGroup, pageIndex, pageSize, sorts);
+            page.rows = ts;
+            page.CurrentPage = pageIndex;
+            page.TotalPageCount = (page.total % pageSize) == 0 ? page.total / pageSize : ((int)Math.Floor((double)(page.total / pageSize)) + 1);
+            return page;
         }
 
         public int GetCount(IPredicateGroup predicateGroup)
         {
-            try
-            {
-                return _repository.Count(predicateGroup);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            return _repository.Count(predicateGroup);
         }
 
         public T Get(int id)
         {
-            try
-            {
-                return _repository.GetModelByMainKey(id);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            return _repository.GetModelByMainKey(id);
         }
 
         public T GetFirstOrDefault(IPredicateGroup predicateGroup)
         {
-            try
-            {
-                return _repository.GetFirstOrDefault(predicateGroup);
-            }
-            catch (Exception)
-            {
+            return _repository.GetFirstOrDefault(predicateGroup);
+        }
 
-                throw;
-            }
+        public int Add(T t)
+        {
+            return (int)_repository.Insert(t);
         }
 
         #endregion

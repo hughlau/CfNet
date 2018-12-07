@@ -18,7 +18,7 @@ namespace CfNet.Admin.ModelFactories
                 UserName = user.UserName,
                 Mobile = user.Mobile,
                 Email=user.Email,
-                IsExist=user.IsExist
+                IsExist=user.IsExist==0
             };
             if (null!= userAuth)
             {

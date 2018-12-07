@@ -171,13 +171,7 @@
                 shade: 0.5,
                 skin: 'layui-layer-rim',
                 area: ['80%', '80%'],
-                content: '/User/Edit'+ id,
-                cancel: function (index, layero) {
-                    if (confirm('确定要关闭么')) { //只有当点击confirm框的确定时，该层才会关闭
-                        layer.close(index)
-                    }
-                    return false;
-                }    
+                content: '/User/Edit/'+ id  
             });
         }
     </script>
