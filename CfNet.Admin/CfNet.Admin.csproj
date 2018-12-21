@@ -157,6 +157,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MonitorController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -166,6 +168,7 @@
     <Compile Include="Infrastructure\DependencyRegistrar.cs" />
     <Compile Include="ModelFactories\ISysUserModelFactory.cs" />
     <Compile Include="ModelFactories\SysUserModelFactory.cs" />
+    <Compile Include="Models\Auth\LoginModel.cs" />
     <Compile Include="Models\SysUser\SysUserEditModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -256,6 +259,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Error\Error404.cshtml" />
+    <Content Include="Views\Error\Error500.cshtml" />
+    <Content Include="Views\Auth\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\Factories\" />

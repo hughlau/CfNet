@@ -32,6 +32,7 @@ namespace CfNet.Admin.Controllers
             return PartialView();
         }
 
+
         public string GetMenuString(IList<SysMenu> menus,StringBuilder htmlString,int parentId)
         {
             IList<SysMenu> thisLevelMenus = menus.Where(p => p.ParentID == parentId).ToList();

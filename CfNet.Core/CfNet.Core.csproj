@@ -92,6 +92,7 @@
     <Compile Include="Domain\SysMenu\SysMenu.cs" />
     <Compile Include="Domain\SysUser\SysUser.cs" />
     <Compile Include="Domain\SysUser\SysUserAuth.cs" />
+    <Compile Include="Domain\SysUser\UserLoginResults.cs" />
     <Compile Include="Helper\CommonHelper.cs" />
     <Compile Include="Infrastructure\DependencyManagement\IDependencyRegistrar.cs" />
     <Compile Include="Infrastructure\Engine\EngineContext.cs" />
