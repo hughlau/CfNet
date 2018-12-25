@@ -10,18 +10,17 @@ namespace CfNet.Admin.Models.Auth
 {
     public class LoginModel
     {
-        [DisplayName("Account.Login.Fields.UserName")]
-        [AllowHtml]
+
+        [Required(ErrorMessage = "账号不能为空")]
+        [StringLength(200, MinimumLength = 3, ErrorMessage = "用户名长度3-200之间")]
         public string Username { get; set; }
 
+        
+        [Required(ErrorMessage = "密码不能为空")]
         [DataType(DataType.Password)]
-        [DisplayName("Account.Login.Fields.Password")]
-        [AllowHtml]
         public string Password { get; set; }
 
-        [DisplayName("Account.Login.Fields.RememberMe")]
         public bool RememberMe { get; set; }
 
-        public string Message { get; set; }
     }
 }

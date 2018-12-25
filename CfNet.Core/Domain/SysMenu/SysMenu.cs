@@ -27,5 +27,7 @@ namespace CfNet.Core.Domain
         public string UpdateTime { get; set; }
 
         public string UpdateUser { get; set; }
+
+        public int Status { get; set; }
     }
 }

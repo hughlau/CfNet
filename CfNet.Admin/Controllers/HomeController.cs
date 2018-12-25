@@ -19,6 +19,7 @@ namespace CfNet.Admin.Controllers
             this._sysMenuService = sysMenuService;
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             return View();

@@ -36,33 +36,43 @@ namespace CfNet.Admin.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel loginModel)
         {
-            var loginResult = _userRegistrationService.ValidateUser(loginModel.Username, loginModel.Password);
-            switch (loginResult)
+            if (ModelState.IsValid)
             {
-                case UserLoginResults.Successful:
-                    {
-                        IPredicate predicate1 = Predicates.Field<SysUserAuth>(p => p.Openid, Operator.Eq, loginModel.Username);
-                        IPredicate predicate2 = Predicates.Field<SysUserAuth>(p => p.AccessToken, Operator.Eq, loginModel.Password);
-                        IPredicateGroup group1 = Predicates.Group(GroupOperator.And, predicate1, predicate2);
-                        SysUserAuth userAuth1 = _sysUserAuthService.GetFirstOrDefault(group1);
-                        SysUser user = _sysUserService.Get(userAuth1.UserId);
-                        _authenticationService.SignIn(user, loginModel.RememberMe);
-                        return Redirect("~/Home/Index");
-                    }
-                case UserLoginResults.UserNotExist:
-                    {
-                        loginModel.Message = "用户不存在";
-                    }
-                    break;
-                case UserLoginResults.WrongPassword:
-                    {
-                        loginModel.Message = "密码错误";
-                    }
-                    break;
-                default:
-                    break;
+                var loginResult = _userRegistrationService.ValidateUser(loginModel.Username, loginModel.Password);
+                switch (loginResult)
+                {
+                    case UserLoginResults.Successful:
+                        {
+                            IPredicate predicate1 = Predicates.Field<SysUserAuth>(p => p.Openid, Operator.Eq, loginModel.Username);
+                            IPredicate predicate2 = Predicates.Field<SysUserAuth>(p => p.AccessToken, Operator.Eq, loginModel.Password);
+                            IPredicateGroup group1 = Predicates.Group(GroupOperator.And, predicate1, predicate2);
+                            SysUserAuth userAuth1 = _sysUserAuthService.GetFirstOrDefault(group1);
+                            SysUser user = _sysUserService.Get(userAuth1.UserId);
+                            _authenticationService.SignIn(user, loginModel.RememberMe);
+                            return Content("success");
+                        }
+                    case UserLoginResults.UserNotExist:
+                        {
+                            return Content("用户不存在");
+                        }
+                        break;
+                    case UserLoginResults.WrongPassword:
+                        {
+                            return Content("密码错误");
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
-            return View(loginModel);
+            return Content("验证失败");
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            _authenticationService.SignOut();
+            return View("Login");
         }
     }
 }

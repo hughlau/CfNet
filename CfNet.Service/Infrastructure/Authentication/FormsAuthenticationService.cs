@@ -70,8 +70,8 @@ namespace CfNet.Service.Infrastructure.Authentication
 
             var formsIdentity = (FormsIdentity)_httpContext.User.Identity;
             var user = GetAuthenticatedCustomerFromTicket(formsIdentity.Ticket);
-            if (_cachedUser != null)
-                _cachedUser = user;
+            
+             _cachedUser = user;
             return _cachedUser;
         }
 
@@ -96,7 +96,7 @@ namespace CfNet.Service.Infrastructure.Authentication
             {
                 cookie.Expires = ticket.Expiration;
             }
-            cookie.Secure = FormsAuthentication.RequireSSL;
+            //cookie.Secure = FormsAuthentication.RequireSSL;
             cookie.Path = FormsAuthentication.FormsCookiePath;
             if (FormsAuthentication.CookieDomain != null)
             {
