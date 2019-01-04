@@ -69,6 +69,10 @@ namespace CfNet.Service.BaseService
             return (int)_repository.Insert(t);
         }
 
+        public void Update(T t)
+        {
+            _repository.Update(t);
+        }
         #endregion
     }
 }

@@ -6,6 +6,6 @@ namespace CfNet.Service.SysUserService
 {
     public partial interface ISysUserService:IBaseService<SysUser>
     {
-        void Update(SysUser user);
+
     }
 }

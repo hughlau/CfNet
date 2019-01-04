@@ -161,7 +161,15 @@ namespace CfNet.Admin.Controllers
                 AccessToken = model.Password
             };
 
+            SysUser userModel= _sysUserService.Get(model.UserID);
+            userModel.UserName = user.UserName;
+            userModel.IsExist = user.IsExist;
+            userModel.Mobile = user.Mobile;
+            userModel.Email = user.Email;
+            userModel.UpdateTime = DateTime.Now.ToShortDateString();
             _sysUserService.Update(user);
+
+
             _sysUserAuthService.UpdateAuth(auth);
         }
     }

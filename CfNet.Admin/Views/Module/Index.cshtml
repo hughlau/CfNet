@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE> 页面配置</TITLE>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="~/Scripts/ztree/css/metroStyle/metroStyle.css" type="text/css">
+    <link href="~/Scripts/bstable/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Scripts/bstable/css/bootstrap-table.css" rel="stylesheet" type="text/css">
+
+    <script src="~/Scripts/jquery/jQuery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/ztree/jquery.ztree.core.min.js"></script>
+    <script src="~/Scripts/bstable/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/bstable/js/bootstrap-table.js"></script>
+    <script src="~/Scripts/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+    <style>
+
+        ul.list {
+            margin-left: 17px;
+        }
+
+        div.content_wrap {
+            padding: 20px 40px 0 40px;
+        }
+
+        div.content_wrap div.left {
+            float: left;
+            width: 20%;
+            border: 1px solid #dddddd;
+        }
+
+            div.content_wrap div.right {
+                float: right;
+                width:78%;
+            }
+    </style>
+    <SCRIPT type="text/javascript">
+<!--
+        var setting = {
+            view: {
+
+                selectedMulti: false,
+                dblClickExpand: false,
+                showLine: false
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                onClick: onClick
+            }
+        };
+
+        zNodes = JSON.parse('@Html.Raw(ViewBag.tree)');
+
+        $(document).ready(function(){
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+            var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+            treeObj.expandAll(true);
+        });
+        function onClick(e, treeId, treeNode) {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            zTree.expandNode(treeNode);
+            if (undefined == treeNode.isParent || !treeNode.isParent) {
+                datas(treeNode.id);
+                $("#curMenuId").val(treeNode.id);
+            }
+        }
+
+        function datas(id) {
+            $("#table").bootstrapTable('destroy');
+            $('#table').bootstrapTable({
+                method: "post",
+                striped: true,
+                singleSelect: false,
+                url: "PageData",
+                dataType: "json",
+                pagination: true, //分页
+                sidePagination: "server",
+                pageSize: 10,
+                pageNumber: 1,
+                search: false, //显示搜索框
+                contentType: "application/x-www-form-urlencoded",
+                queryParams: function (params) {
+                    //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                    var temp = {
+                        pageSize: params.limit,                         //页面大小
+                        pageNumber: (params.offset / params.limit) + 1,   //页码
+                        sort: "",      //排序列名
+                        sortOrder: "asc", //排位命令（desc，asc）
+                        id: id
+                    };
+                    return temp;
+                },
+                columns: [
+
+                    {
+                        title: "id",
+                        field: 'PageId',
+                        align: 'center',
+                        valign: 'middle',
+                        visible: false
+                    },
+                    {
+                        title: '页面名',
+                        field: 'PageName',
+                        align: 'center',
+                        valign: 'middle'
+                    },
+                    {
+                        title: '路径',
+                        field: 'Url',
+                        align: 'center',
+                        valign: 'middle'
+                    },
+                    {
+                        title: '说明',
+                        field: 'Description',
+                        align: 'center'
+                    },
+                    {
+                        title: '创建时间',
+                        field: 'CreateTime',
+                        align: 'center'
+                    },
+                    {
+                        title: '是否有效',
+                        field: 'IsValid',
+                        align: 'center',
+                        formatter: function (cellval, row) {
+                            //var cellval=$("#station").val();
+                            if (cellval == 0) {
+                                return '<div  style="color:red">有效</div>';
+                            } else if (cellval == 1) {
+                                return '<div  style="color:green">无效</div>';
+                            } else {
+                                return cellval;
+                            }
+                        }
+                    },
+                    {
+                        title: '操作',
+                        field: 'opear',
+                        align: 'center',
+                        formatter: function (value, row) {
+                            var e = '<a class="menuItem"  href="javascript:openlayer(' + row.PageId + ')" title="查看详情">编辑</a> ';
+
+
+                            return e;
+                        }
+                    }
+                ],
+                onPostBody: function () {
+
+                }
+            });
+        }
+        //--></SCRIPT>
+</HEAD>
+<BODY>
+    <div class="content_wrap">
+        <div class="left">
+            <ul id="treeDemo" class="ztree"></ul>
+        </div>
+        <div class="right">
+            <p class="p_but">
+                <span style="float:right"><i class="add_i"></i><a href="javascript:openlayer(0)" class="add_a">新建页面</a></span>
+            </p>
+            <p>
+                <table id="table" class="table_style" style="margin: 0 auto"></table>
+            </p>
+        </div>
+        <input type="hidden" id="curMenuId" />
+    </div>
+    <script src="~/Scripts/layer/layer.js"></script>
+    <script>
+        function openlayer(id) {
+            var menuid = $('#curMenuId').val();
+            if (undefined == menuid || null == menuid || "" == menuid.trim()) {
+                layer.alert("请选择菜单");
+                return;
+            }
+            layer.open({
+                type: 2,
+                title: id == 0 ? '添加信息' : '修改信息',
+                shade: 0.5,
+                skin: 'layui-layer-rim',
+                area: ['80%', '80%'],
+                content: id == 0 ? '/Module/Edit?pageid=0&menuid=' + menuid : '/Module/Edit?pageid=' + id + '&menuid=' + menuid
+            });
+        }
+    </script>
+</BODY>
+
+</HTML>

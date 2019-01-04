@@ -17,7 +17,7 @@ namespace CfNet.Data.Infrastructure
     {
         #region Field
 
-        private IDataProviderManager _dataProviderManager;
+        private readonly IDataProviderManager _dataProviderManager;
 
         #endregion
 

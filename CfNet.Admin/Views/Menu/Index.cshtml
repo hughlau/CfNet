@@ -18,22 +18,22 @@
         <table id="table"></table>
     </div>
 </body>
+
 <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-table/1.12.0/extensions/treegrid/bootstrap-table-treegrid.js"></script>
 <script src="https://cdn.bootcss.com/jquery-treegrid/0.2.0/js/jquery.treegrid.min.js"></script>
 <script type="text/javascript">
     var $table = $('#table');
-    var data = JSON.parse('@Html.Raw(ViewBag.Tree)');
     $(function () {
 
-        //控制台输出一下数据
-        console.log(data);
-
         $table.bootstrapTable({
-            data: data,
+            //data: data,
+            method: "post",
+            url: "MenuData",
             idField: 'MenuId',
-            dataType: 'jsonp',
+            dataType: 'json',
             columns: [
                 { field: 'MenuName', title: '名称' },
                 { field: 'Status', title: '状态', sortable: true, align: 'center', formatter: 'statusFormatter' },
@@ -107,6 +107,7 @@
         }
     };
 </script>
+<script src="~/Scripts/layer/layer.js"></script>
 <script>
 
     function add(id) {
@@ -116,9 +117,18 @@
         alert("del 方法 , id = " + id);
     }
     function update(id) {
-        alert("update 方法 , id = " + id);
+        openlayer(id);
     }
 
-
+    function openlayer(id) {
+        layer.open({
+            type: 2,
+            title: id == 0 ? '添加信息' : '修改信息',
+            shade: 0.5,
+            skin: 'layui-layer-rim',
+            area: ['80%', '80%'],
+            content: '/Menu/Edit/' + id
+        });
+    }
 </script>
 </html>

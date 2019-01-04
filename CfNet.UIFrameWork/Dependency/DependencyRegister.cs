@@ -76,8 +76,11 @@ namespace CfNet.UIFrameWork.Dependency
             builder.RegisterType<SysMenuService>().As<ISysMenuService>().InstancePerLifetimeScope();
             builder.RegisterType<SysUserService>().As<ISysUserService>().InstancePerLifetimeScope();
             builder.RegisterType<SysUserAuthService>().As<ISysUserAuthService>().InstancePerLifetimeScope();
+            builder.RegisterType<SysPageService>().As<ISysPageService>().InstancePerLifetimeScope();
+
             builder.RegisterType<FormsAuthenticationService>().As<IAuthenticationService>().InstancePerLifetimeScope();
             builder.RegisterType<UserRegistrationService>().As<IUserRegistrationService>().InstancePerLifetimeScope();
+
 
 
             //builder.RegisterControllers(Assembly.GetExecutingAssembly());

@@ -90,6 +90,7 @@
     <Compile Include="Domain\Base\BaseEntity.cs" />
     <Compile Include="Domain\Dict\SysUser.cs" />
     <Compile Include="Domain\SysMenu\SysMenu.cs" />
+    <Compile Include="Domain\SysMenu\SysPage.cs" />
     <Compile Include="Domain\SysUser\SysUser.cs" />
     <Compile Include="Domain\SysUser\SysUserAuth.cs" />
     <Compile Include="Domain\SysUser\UserLoginResults.cs" />

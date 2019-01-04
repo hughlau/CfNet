@@ -162,6 +162,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Controllers\MonitorController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -171,6 +172,8 @@
     <Compile Include="ModelFactories\ISysUserModelFactory.cs" />
     <Compile Include="ModelFactories\SysUserModelFactory.cs" />
     <Compile Include="Models\Auth\LoginModel.cs" />
+    <Compile Include="Models\Menu\PageModel.cs" />
+    <Compile Include="Models\Menu\SysMenuEditModel.cs" />
     <Compile Include="Models\Menu\TreeModel.cs" />
     <Compile Include="Models\SysUser\SysUserEditModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -303,6 +306,9 @@
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Scripts\ztree\css\awesomeStyle\awesome.less" />
     <Content Include="Scripts\ztree\css\awesomeStyle\fa.less" />
+    <Content Include="Views\Menu\Edit.cshtml" />
+    <Content Include="Views\Module\Index.cshtml" />
+    <Content Include="Views\Module\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\Factories\" />
